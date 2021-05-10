@@ -12,7 +12,7 @@ body {
     height: 80px;
     top: 0;
     position: sticky;
-    background: rgb(150, 213, 255);
+    background: rgb(40, 56, 66);
     margin-bottom: 20px;
     z-index: 2;
 }
@@ -35,7 +35,7 @@ body {
 }
 
 .input-group-text {
-    background: #22aaff !important;
+    background: #616568 !important;
     margin: 9px 10px 3px 0 !important;
     border-top-left-radius: 0px !important;
     border-bottom-left-radius: 0px !important;
@@ -65,7 +65,7 @@ body {
     list-style-type: none;
     padding: 26px 35px;
     text-align: center;
-    background-color: rgb(150, 213, 255);
+    background-color: rgb(40, 56, 66);
     cursor: pointer;
 }
 
@@ -88,7 +88,7 @@ body {
         width: 100%;
     }
     .menu-bar ul {
-        margin: 10px 1%;
+        margin: 20px 1%;
         width: 100%;
         border-radius: 10px;
     }
@@ -96,6 +96,6 @@ body {
         height: 80px;
         width: 100%;
         border-radius: 10px;
-        background-color: rgb(125, 112, 245);
+        background-color: rgba(46, 44, 61, 0.671);
     }
 }
