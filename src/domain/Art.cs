@@ -16,7 +16,7 @@ namespace Negar.Domain
         [Required]
         public IFormFile Picture { get; set; }
         [Required]
-        public Decimal  Price { get; set; }
+        public ulong  Price { get; set; }
         [Required]
         public string Category { get; set; }
         [Required]

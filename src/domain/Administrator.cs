@@ -10,6 +10,5 @@ namespace Negar.Domain
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        public virtual Employee Employee { get; set; }
     }
 }

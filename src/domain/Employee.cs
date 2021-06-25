@@ -14,7 +14,7 @@ namespace Negar.Domain
 
         public ulong PersonalId { get; set; }
         [Required]
-        public Decimal Salary { get; set; }
+        public ulong Salary { get; set; }
         public virtual User User { get; set; }
     }
 }

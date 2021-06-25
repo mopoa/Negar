@@ -11,7 +11,7 @@ namespace Negar.Domain
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required]
-        public Decimal Credit { get; set; }
+        public ulong Credit { get; set; }
         public virtual Cart Cart { get; set; }
 
         public virtual  ICollection<Order> Orders { get; set; }
