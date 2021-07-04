@@ -9,11 +9,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Negar.infrastructure;
 
 
-namespace Negar.api
+
+namespace Negar.Api
 {
     public class Startup
     {
@@ -21,6 +22,7 @@ namespace Negar.api
         {
             Configuration = configuration;
         }
+        
 
         public IConfiguration Configuration { get; }
 
@@ -29,14 +31,12 @@ namespace Negar.api
         {
             services.AddMvc();
 
-            var connectionString=Configuration["connectionStrings:NegarDbConnectionString"];
-
+            var connectionString=Configuration["connectionStrings:negarDbConnectionString"];
             services.AddDbContext<NegarDbContext>(e=>e.UseSqlServer(connectionString));
-            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -45,7 +45,15 @@ namespace Negar.api
 
             app.UseHttpsRedirection();
 
+            app.UseRouting();
+
+            app.UseAuthorization();
             app.UseMvc();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
+
         }
     }
 }

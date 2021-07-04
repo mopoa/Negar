@@ -5,20 +5,20 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Negar.infrastructure;
+using Negar.Api;
 
 namespace api.Migrations
 {
     [DbContext(typeof(NegarDbContext))]
-    [Migration("20210625113134_init")]
+    [Migration("20210627130605_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.16")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Negar.Domain.Administrator", b =>
@@ -49,16 +49,16 @@ namespace api.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<int?>("DesignerId")
                         .HasColumnType("int");
 
                     b.Property<string>("Instruments")
                         .IsRequired()
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.HasKey("Id");
 
@@ -85,8 +85,8 @@ namespace api.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<int?>("DesignerId")
                         .HasColumnType("int");
@@ -96,8 +96,8 @@ namespace api.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -201,8 +201,8 @@ namespace api.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<int>("Fee")
                         .HasColumnType("int");
@@ -212,8 +212,8 @@ namespace api.Migrations
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -256,8 +256,8 @@ namespace api.Migrations
 
                     b.Property<string>("Address")
                         .IsRequired()
-                        .HasColumnType("nvarchar(200)")
-                        .HasMaxLength(200);
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<int?>("ArtistId")
                         .HasColumnType("int");
@@ -337,12 +337,12 @@ namespace api.Migrations
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<decimal>("NationalId")
                         .HasColumnType("decimal(20,0)");
@@ -359,8 +359,8 @@ namespace api.Migrations
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(50)")
-                        .HasMaxLength(50);
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -376,6 +376,8 @@ namespace api.Migrations
                     b.HasOne("Negar.Domain.Designer", null)
                         .WithMany("Applications")
                         .HasForeignKey("DesignerId");
+
+                    b.Navigation("Artist");
                 });
 
             modelBuilder.Entity("Negar.Domain.Art", b =>
@@ -387,6 +389,10 @@ namespace api.Migrations
                     b.HasOne("Negar.Domain.Designer", "Designer")
                         .WithMany("Arts")
                         .HasForeignKey("DesignerId");
+
+                    b.Navigation("Artist");
+
+                    b.Navigation("Designer");
                 });
 
             modelBuilder.Entity("Negar.Domain.Artist", b =>
@@ -398,6 +404,10 @@ namespace api.Migrations
                     b.HasOne("Negar.Domain.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
+
+                    b.Navigation("Cart");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Negar.Domain.Designer", b =>
@@ -405,6 +415,8 @@ namespace api.Migrations
                     b.HasOne("Negar.Domain.Employee", "Employee")
                         .WithMany()
                         .HasForeignKey("EmployeeId");
+
+                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("Negar.Domain.Employee", b =>
@@ -412,6 +424,8 @@ namespace api.Migrations
                     b.HasOne("Negar.Domain.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Negar.Domain.Item", b =>
@@ -427,6 +441,10 @@ namespace api.Migrations
                     b.HasOne("Negar.Domain.Instrument", "Instrument")
                         .WithMany()
                         .HasForeignKey("InstrumentId");
+
+                    b.Navigation("Art");
+
+                    b.Navigation("Instrument");
                 });
 
             modelBuilder.Entity("Negar.Domain.Order", b =>
@@ -438,6 +456,8 @@ namespace api.Migrations
                     b.HasOne("Negar.Domain.Cart", "Cart")
                         .WithMany()
                         .HasForeignKey("CartId");
+
+                    b.Navigation("Cart");
                 });
 
             modelBuilder.Entity("Negar.Domain.Packager", b =>
@@ -445,6 +465,8 @@ namespace api.Migrations
                     b.HasOne("Negar.Domain.Employee", "Employee")
                         .WithMany()
                         .HasForeignKey("EmployeeId");
+
+                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("Negar.Domain.Process", b =>
@@ -490,7 +512,39 @@ namespace api.Migrations
 
                             b1.WithOwner("Process")
                                 .HasForeignKey("ProcessId");
+
+                            b1.Navigation("Order");
+
+                            b1.Navigation("Process");
                         });
+
+                    b.Navigation("Payment");
+                });
+
+            modelBuilder.Entity("Negar.Domain.Artist", b =>
+                {
+                    b.Navigation("Applications");
+
+                    b.Navigation("Arts");
+
+                    b.Navigation("Orders");
+                });
+
+            modelBuilder.Entity("Negar.Domain.Cart", b =>
+                {
+                    b.Navigation("Items");
+                });
+
+            modelBuilder.Entity("Negar.Domain.Designer", b =>
+                {
+                    b.Navigation("Applications");
+
+                    b.Navigation("Arts");
+                });
+
+            modelBuilder.Entity("Negar.Domain.Packager", b =>
+                {
+                    b.Navigation("Processes");
                 });
 #pragma warning restore 612, 618
         }

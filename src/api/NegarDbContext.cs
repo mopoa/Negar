@@ -1,16 +1,17 @@
-﻿using System;
+
 using Microsoft.EntityFrameworkCore;
 using Negar.Domain;
 
-namespace Negar.infrastructure
+namespace Negar.Api
 {
+
+
     public class NegarDbContext : DbContext
     {
         public NegarDbContext(DbContextOptions<NegarDbContext> options)
-        : base(options)
+            : base(options)
         {
             Database.Migrate();
-
         }
         public virtual DbSet<Administrator> Administrators { get; set; }
         public virtual DbSet<Application> Applications { get; set; }
@@ -26,17 +27,17 @@ namespace Negar.infrastructure
         public virtual DbSet<Payment> Payments { get; set; }
         public virtual DbSet<Process> Processes { get; set; }
         public virtual DbSet<User> Users { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
-            modelBuilder.Entity<Designer>().HasMany(e=>e.Applications); 
-            modelBuilder.Entity<Application>().Ignore(app=>app.Image);
-            modelBuilder.Entity<Art>().Ignore(a=>a.Picture);
-            modelBuilder.Entity<Instrument>().Ignore(ins=>ins.Picture);
-            modelBuilder.Entity<User>().Ignore(u=>u.UserPicture);
-            modelBuilder.Entity<Process>().OwnsOne(e=>e.Payment);
+
+            modelBuilder.Entity<Designer>().HasMany(e => e.Applications);
+            modelBuilder.Entity<Application>().Ignore(app => app.Image);
+            modelBuilder.Entity<Art>().Ignore(a => a.Picture);
+            modelBuilder.Entity<Instrument>().Ignore(ins => ins.Picture);
+            modelBuilder.Entity<User>().Ignore(u => u.UserPicture);
+            modelBuilder.Entity<Process>().OwnsOne(e => e.Payment);
         }
+
 
     }
 }

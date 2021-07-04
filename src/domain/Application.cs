@@ -21,5 +21,7 @@ namespace Negar.Domain
 
         public IFormFile Image { get; set; }
         public virtual Artist Artist { get; set; }
+
+       
     }
 }

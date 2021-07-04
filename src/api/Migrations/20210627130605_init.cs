@@ -11,7 +11,7 @@ namespace api.Migrations
                 name: "Administrators",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1")
                 },
                 constraints: table =>
@@ -23,10 +23,10 @@ namespace api.Migrations
                 name: "Carts",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Status = table.Column<string>(nullable: false),
-                    TotalPrice = table.Column<int>(nullable: false)
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    TotalPrice = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -37,12 +37,12 @@ namespace api.Migrations
                 name: "Instruments",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(maxLength: 50, nullable: false),
-                    RemainderCount = table.Column<decimal>(nullable: false),
-                    Description = table.Column<string>(maxLength: 500, nullable: false),
-                    Fee = table.Column<int>(nullable: false)
+                    Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    RemainderCount = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    Fee = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -53,17 +53,17 @@ namespace api.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(maxLength: 50, nullable: false),
-                    LastName = table.Column<string>(maxLength: 50, nullable: true),
-                    UserName = table.Column<string>(maxLength: 50, nullable: false),
-                    Email = table.Column<string>(nullable: false),
-                    Password = table.Column<string>(nullable: false),
-                    PhoneNumber = table.Column<decimal>(nullable: false),
-                    NationalId = table.Column<decimal>(nullable: false),
-                    Address = table.Column<string>(nullable: true),
-                    PostalCode = table.Column<long>(nullable: false)
+                    FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    UserName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNumber = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
+                    NationalId = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PostalCode = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -74,11 +74,11 @@ namespace api.Migrations
                 name: "Artists",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Credit = table.Column<decimal>(nullable: false),
-                    CartId = table.Column<int>(nullable: true),
-                    UserId = table.Column<int>(nullable: true)
+                    Credit = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
+                    CartId = table.Column<int>(type: "int", nullable: true),
+                    UserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -101,11 +101,11 @@ namespace api.Migrations
                 name: "Employees",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PersonalId = table.Column<decimal>(nullable: false),
-                    Salary = table.Column<decimal>(nullable: false),
-                    UserId = table.Column<int>(nullable: true)
+                    PersonalId = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
+                    Salary = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -122,13 +122,13 @@ namespace api.Migrations
                 name: "Orders",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Address = table.Column<string>(maxLength: 200, nullable: false),
-                    Status = table.Column<string>(nullable: true),
-                    TotalPrice = table.Column<int>(nullable: false),
-                    CartId = table.Column<int>(nullable: true),
-                    ArtistId = table.Column<int>(nullable: true)
+                    Address = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    TotalPrice = table.Column<int>(type: "int", nullable: false),
+                    CartId = table.Column<int>(type: "int", nullable: true),
+                    ArtistId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -151,9 +151,9 @@ namespace api.Migrations
                 name: "Designers",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    EmployeeId = table.Column<int>(nullable: true)
+                    EmployeeId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -170,9 +170,9 @@ namespace api.Migrations
                 name: "Packagers",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    EmployeeId = table.Column<int>(nullable: true)
+                    EmployeeId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -189,13 +189,13 @@ namespace api.Migrations
                 name: "Applications",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Category = table.Column<string>(nullable: false),
-                    Instruments = table.Column<string>(maxLength: 500, nullable: false),
-                    Description = table.Column<string>(maxLength: 500, nullable: false),
-                    ArtistId = table.Column<int>(nullable: true),
-                    DesignerId = table.Column<int>(nullable: true)
+                    Category = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Instruments = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    ArtistId = table.Column<int>(type: "int", nullable: true),
+                    DesignerId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -218,14 +218,14 @@ namespace api.Migrations
                 name: "Arts",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(maxLength: 50, nullable: false),
-                    Price = table.Column<decimal>(nullable: false),
-                    Category = table.Column<string>(nullable: false),
-                    Description = table.Column<string>(maxLength: 500, nullable: false),
-                    DesignerId = table.Column<int>(nullable: true),
-                    ArtistId = table.Column<int>(nullable: true)
+                    Title = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(20,0)", nullable: false),
+                    Category = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    DesignerId = table.Column<int>(type: "int", nullable: true),
+                    ArtistId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -248,11 +248,11 @@ namespace api.Migrations
                 name: "Processes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Status = table.Column<string>(nullable: false),
-                    CreateTime = table.Column<DateTime>(nullable: false),
-                    PackagerId = table.Column<int>(nullable: true)
+                    Status = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreateTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    PackagerId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -269,11 +269,11 @@ namespace api.Migrations
                 name: "Items",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ArtId = table.Column<int>(nullable: true),
-                    InstrumentId = table.Column<int>(nullable: true),
-                    CartId = table.Column<int>(nullable: true)
+                    ArtId = table.Column<int>(type: "int", nullable: true),
+                    InstrumentId = table.Column<int>(type: "int", nullable: true),
+                    CartId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -302,13 +302,13 @@ namespace api.Migrations
                 name: "Payments",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Value = table.Column<int>(nullable: false),
-                    IsDone = table.Column<bool>(nullable: false),
-                    OperationMoment = table.Column<DateTime>(nullable: false),
-                    OrderId = table.Column<int>(nullable: true),
-                    ProcessId = table.Column<int>(nullable: false)
+                    Value = table.Column<int>(type: "int", nullable: false),
+                    IsDone = table.Column<bool>(type: "bit", nullable: false),
+                    OperationMoment = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    OrderId = table.Column<int>(type: "int", nullable: true),
+                    ProcessId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
